@@ -3,10 +3,33 @@ import numpy as np
 
 
 class SVD:
-    """Initialize the SVD object.
+    """Singular Value Decomposition (SVD) for dimensionality reduction.
+
+    This class implements SVD using NumPy to perform dimensionality reduction on
+    a given dataset.
 
     Args:
-        n_components: Number of components to retain.
+        n_components (int, optional): Number of components to retain.
+
+    Attributes:
+        n_components (int): Number of components to retain.
+        u (numpy.ndarray): Left singular vectors.
+        sigma (numpy.ndarray): Singular values.
+        v (numpy.ndarray): Right singular vectors.
+
+    Methods:
+        fit(matrix): Fit the SVD model to the input data.
+        fit_transform(matrix): Fit the SVD model to the input data and return
+            the transformed data.
+        transform(): Transform the data based on the specified number of
+            components.
+
+    Example:
+        # Create an SVD instance with 2 components
+        svd = SVD(n_components=2)
+
+        # Fit the SVD model to the data and transform the data
+        transformed_data = svd.fit_transform(data_matrix)
 
     """
 
@@ -61,7 +84,6 @@ class SVD:
                 @ np.diag(self.sigma[: self.n_components])
                 @ self.v[: self.n_components, :]
             )
-
         else:
             result = self.u @ np.diag(self.sigma) @ self.v
 
