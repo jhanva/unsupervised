@@ -9,13 +9,13 @@ class SVD:
     a given dataset.
 
     Args:
-        n_components (int, optional): Number of components to retain.
+        n_components: Number of components to retain.
 
     Attributes:
-        n_components (int): Number of components to retain.
-        u (numpy.ndarray): Left singular vectors.
-        sigma (numpy.ndarray): Singular values.
-        v (numpy.ndarray): Right singular vectors.
+        n_components: Number of components to retain.
+        u: Left singular vectors.
+        sigma: Singular values.
+        v: Right singular vectors.
 
     Methods:
         fit(matrix): Fit the SVD model to the input data.
@@ -37,7 +37,7 @@ class SVD:
         """Initialize a new SVD instance.
 
         Args:
-            n_components (int, optional): Number of components to retain.
+            n_components: Number of components to retain.
 
         """
         self.n_components = n_components
@@ -49,7 +49,7 @@ class SVD:
         """Fit the SVD to the input matrix.
 
         Args:
-            matrix (numpy.ndarray): The input matrix.
+            matrix: The input matrix.
 
         """
         matrix = np.array(matrix)
