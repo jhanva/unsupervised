@@ -13,7 +13,7 @@ class PCA:
 
     Attributes:
         n_components: The number of principal components to retain.
-        components): The retained principal components.
+        components: The retained principal components.
         mean: The mean vector of the input data.
         std: The standard deviation vector of the input data.
 
@@ -45,7 +45,7 @@ class PCA:
         """Fit the PCA model to the input data.
 
         Args:
-            matrix (numpy.ndarray): The input data matrix where each row
+            matrix: The input data matrix where each row
                 represents a data point and each column represents a feature.
         """
 
