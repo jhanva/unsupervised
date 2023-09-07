@@ -9,7 +9,7 @@ of data while preserving important information.
 
 ## Installation
 
-You can install [Your Library Name] using pip:
+You can install unsupervised using pip:
 
 ```bash
 pip install -e
