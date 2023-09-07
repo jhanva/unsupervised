@@ -39,7 +39,6 @@ class PCA:
         self.n_components = n_components
         self.components = None
         self.mean = None
-        self.std = None
 
     def fit(self, matrix: np.array) -> None:
         """Fit the PCA model to the input data.
@@ -49,11 +48,10 @@ class PCA:
                 represents a data point and each column represents a feature.
 
         """
-
+        matrix = np.array(matrix)
         self.mean = np.mean(matrix, axis=0)
-        self.std = np.std(matrix, axis=0)
 
-        matrix = (matrix - self.mean) / self.std
+        matrix = matrix - self.mean
 
         # Compute the covariance matrix
         cov_matrix = np.cov(matrix, rowvar=False)
@@ -97,7 +95,8 @@ class PCA:
             The transformed data in the PCA space.
 
         """
-        matrix = (matrix - self.mean) / self.std
+        matrix = np.array(matrix)
+        matrix = matrix - self.mean
 
         # Project the data onto the principal components
         return np.dot(matrix, self.components)
