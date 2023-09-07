@@ -41,6 +41,7 @@ class SVD:
 
         """
         self.n_components = n_components
+        self.components = None
         self.u = None
         self.sigma = None
         self.v = None
@@ -54,6 +55,7 @@ class SVD:
         """
         matrix = np.array(matrix)
         u, s, v = np.linalg.svd(matrix, full_matrices=False)
+        self.components = v[:self.n_components].T if self.n_components else v.T
         self.u = u
         self.sigma = s
         self.v = v
@@ -69,9 +71,9 @@ class SVD:
 
         """
         self.fit(matrix)
-        return self.transform()
+        return self.transform(matrix)
 
-    def transform(self) -> np.array:
+    def inverse_transform(self) -> np.array:
         """Transform the data based on the specified number of components.
 
         Returns:
@@ -88,3 +90,7 @@ class SVD:
             result = self.u @ np.diag(self.sigma) @ self.v
 
         return result
+
+    def transform(self, matrix: np.array):
+        return np.dot(matrix, self.components)
+
