@@ -23,6 +23,8 @@ class SVD:
             the transformed data.
         transform(): Transform the data based on the specified number of
             components.
+        inverse_transform(matrix): Transform the data back to the original
+            space.
 
     Example:
         # Create an SVD instance with 2 components
@@ -55,7 +57,7 @@ class SVD:
         """
         matrix = np.array(matrix)
         u, s, v = np.linalg.svd(matrix, full_matrices=False)
-        self.components = v[:self.n_components].T if self.n_components else v.T
+        self.components = v[: self.n_components].T if self.n_components else v.T
         self.u = u
         self.sigma = s
         self.v = v
@@ -92,5 +94,14 @@ class SVD:
 
         return result
 
-    def transform(self, matrix: np.array):
+    def transform(self, matrix: np.array) -> np.array:
+        """Transform the data based on the specified number of components.
+
+        Args:
+            matrix (np.array): The input matrix.
+
+        Returns:
+            np.array: Transformed data.
+
+        """
         return np.dot(matrix, self.components)
