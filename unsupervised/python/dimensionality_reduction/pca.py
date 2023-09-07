@@ -47,6 +47,7 @@ class PCA:
         Args:
             matrix: The input data matrix where each row
                 represents a data point and each column represents a feature.
+
         """
 
         self.mean = np.mean(matrix, axis=0)
